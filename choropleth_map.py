@@ -18,7 +18,7 @@ from plotly.subplots import make_subplots
 # In[2]:
 
 
-df = pd.read_csv(r"C:\Users\oumaima.elmenni\OneDrive - Interpublic\Desktop\map\shareNow_scoringFactors_zipcode_geometry.csv")
+df = pd.read_csv('shareNow_scoringFactors_zipcode_geometry.csv")
 df['geometry'] = df['geometry'].apply(lambda x: loads(x))
 
 
@@ -29,7 +29,7 @@ gdf.head(3)
 # In[3]:
 
 
-df1 = pd.read_excel(r'C:\Users\oumaima.elmenni\OneDrive - Interpublic\Desktop\map\Data Driven OOH Milano.xlsx')
+df1 = pd.read_excel('Data Driven OOH Milano.xlsx')
 
 df1[['latitude', 'longitude']] = df1['lat long'].str.split(',', expand=True).astype(float)
 df_no_duplicates = df1.drop_duplicates(subset=['macro', 'tipologia', 'latitude', 'longitude'])
