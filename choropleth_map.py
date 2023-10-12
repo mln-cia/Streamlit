@@ -18,7 +18,7 @@ from plotly.subplots import make_subplots
 # In[2]:
 
 
-df = pd.read_csv('shareNow_scoringFactors_zipcode_geometry.csv")
+df = pd.read_csv('shareNow_scoringFactors_zipcode_geometry.csv')
 df['geometry'] = df['geometry'].apply(lambda x: loads(x))
 
 
