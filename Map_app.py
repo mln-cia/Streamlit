@@ -29,27 +29,24 @@ if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
 
      
-
-                # Create a GeoDataFrame from the DataFrame (assuming "geometry" column contains geometries)
+# Creating a GeoDataFrame from the DataFrame 
 df['geometry'] = df['geometry'].apply(lambda x: loads(x))
 gdf = gpd.GeoDataFrame(df, geometry='geometry')
 
 gdf = gdf.drop('Unnamed: 0', axis=1)
 df = df.drop('Unnamed: 0', axis=1)
 
-    # Create sidebars for the choropleth map
+# Creating sidebars for the choropleth map
 excluded_columns = ['cap', 'geometry']
+available_intensity_columns = [col for col in df.columns if col not in excluded_columns] 
 
-    # Create a list of available intensity columns
-available_intensity_columns = [col for col in df.columns if col not in excluded_columns] #and col != df.iloc[:, 0]]
-
-    # Create sidebars for the choropleth map
+# Creating sidebars for the choropleth map
 st.sidebar.header("Choropleth Map Options")
 selected_intensity_column = st.sidebar.selectbox(
         "Select Intensity Column for Choropleth Map",available_intensity_columns,
 )
 
-        # Create the choropleth map 
+# Creating the choropleth map 
 choropleth_fig = px.choropleth_mapbox(
 gdf,
 geojson=gdf.geometry.__geo_interface__,
@@ -64,8 +61,7 @@ hover_data=["cap", selected_intensity_column]
 )
 
 
-
-    # Display the choropleth map
+# Displaying the choropleth map
 st.plotly_chart(choropleth_fig)
         
 
