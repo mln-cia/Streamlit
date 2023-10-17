@@ -40,7 +40,9 @@ def generate_choropleth_map(uploaded_file):
             zoom=10,
             center={"lat": 45.4642, "lon": 9.1900},
             opacity=0.7,
-            hover_data=["cap", selected_intensity_column]
+            hover_data=["cap", selected_intensity_column],
+            height = 900,
+            width = 900,
         )
 
         st.plotly_chart(choropleth_fig)
